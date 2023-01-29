@@ -5,6 +5,7 @@ public class Project {
     {
        UserInput obj = new UserInput();
        obj.getInput();
+       obj.repeat();
 
     }
 

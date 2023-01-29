@@ -3,24 +3,55 @@ public class UserInput {
 
     Scanner input = new Scanner(System.in);
     HashMap map = new HashMap();
+    char a ;
+    //Gets user input
     public void getInput() {
-        char a;
-        System.out.println("\"Enter m for Morse to English or e for English to Morse.\"");
-        a = input.next().charAt(0);
-        if (a == 'm') {
-            translateMorse();
-        }
-        else if (a == 'e') {
-            translateEnglish();
-        }
-        else {
-            System.out.println("Your input is not valid.");
+
+        System.out.println("Enter m for Morse to English or e for English to Morse.");
+
+               a = input.next().toLowerCase().charAt(0);
+
+           switch (a) {
+               case 'm':
+                   translateMorse();
+                   break;
+               case 'e':
+                   translateEnglish();
+                   break;
+               default:
+                   System.out.println("Wrong input please try again:");
+                   input.nextLine();
+                  getInput();
+           }
+    }
+    //in case the user want to input another word or phrase
+    public void repeat() {
+        boolean bool = true;
+        while (bool == true ){
+            System.out.println("Do you want to translate something else? y or n");
+
+            a = input.next().toLowerCase().charAt(0);
+
+            switch (a) {
+                case 'y':
+                    getInput();
+                    break;
+                case 'n':
+                    bool = false;
+                    break;
+                default:
+                    System.out.println("Wrong input please try again:");
+                    input.nextLine();
+                    repeat();
+            }
         }
     }
-    Scanner input1 = new Scanner(System.in);
+
+// english to morse
     public void translateEnglish() {
         System.out.println("Enter a phrase in English.");
-        String englishToMorse = input1.nextLine();
+        input.nextLine();
+        String englishToMorse = input.nextLine();
         englishToMorse = englishToMorse.toLowerCase();
 
         int i = 0;
@@ -34,12 +65,12 @@ public class UserInput {
         }
     }
 
-    Scanner input2 = new Scanner(System.in);
+//morse to english
     public  void translateMorse()
     {
         System.out.println("Enter a phrase in Morse Code.");
-        String morseToEnglish = input2.nextLine();
-        //morseToEnglish = morseToEnglish.toLowerCase();
+        input.nextLine();
+        String morseToEnglish = input.nextLine();
         map.invertMap();
 
        String[] words = morseToEnglish.split( "\\s{3,}");
@@ -53,8 +84,6 @@ public class UserInput {
            System.out.print(" ");
        }
 
-
-
-
     }
+
 }

@@ -52,19 +52,19 @@ public class HashMap {
            map.put('-',"-....-");
 
        }
-
-        String x;
+       //function for translation from english to morse
        public String translate(char i){
            return map.get(i);
 
        }
+       // inverses the hashmap
     Map<String, Character> rmap= new LinkedHashMap<String, Character>();
        public void invertMap(){
            for(Map.Entry<Character, String> entry : map.entrySet()){
                rmap.put(entry.getValue(), entry.getKey());
            }
        }
-
+    // funciton for translating morse to englisht(uses the inverted map)
     public char translateMorse(String x){
         return rmap.get(x);
 
